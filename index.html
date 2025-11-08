@@ -1,12 +1,131 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>موقعي الشخصي - يوسف</title>
+  <title>آلة حاسبة يوسف</title>
+  <style>
+    body {
+      background: #0f172a;
+      color: white;
+      font-family: "Segoe UI", sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .calculator {
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px #0008;
+      width: 280px;
+    }
+
+    input {
+      width: 100%;
+      height: 60px;
+      font-size: 1.5rem;
+      text-align: right;
+      margin-bottom: 15px;
+      border: none;
+      border-radius: 10px;
+      padding: 10px;
+      background: #334155;
+      color: white;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    button {
+      height: 60px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 10px;
+      background: #475569;
+      color: white;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background: #64748b;
+    }
+
+    .equal {
+      background: #16a34a;
+    }
+
+    .equal:hover {
+      background: #22c55e;
+    }
+
+    .clear {
+      background: #dc2626;
+    }
+
+    .clear:hover {
+      background: #ef4444;
+    }
+  </style>
 </head>
-<body style="font-family:sans-serif; text-align:center; padding-top:50px;">
-  <h1>أهلاً بيك في موقعي الشخصي 👋</h1>
-  <p>ده أول موقع لي على GitHub Pages 🎉</p>
+<body>
+  <div class="calculator">
+    <input type="text" id="display" disabled>
+    <div class="buttons">
+      <button onclick="clearDisplay()" class="clear">C</button>
+      <button onclick="append('/')">÷</button>
+      <button onclick="append('*')">×</button>
+      <button onclick="back()">⌫</button>
+
+      <button onclick="append('7')">7</button>
+      <button onclick="append('8')">8</button>
+      <button onclick="append('9')">9</button>
+      <button onclick="append('-')">−</button>
+
+      <button onclick="append('4')">4</button>
+      <button onclick="append('5')">5</button>
+      <button onclick="append('6')">6</button>
+      <button onclick="append('+')">+</button>
+
+      <button onclick="append('1')">1</button>
+      <button onclick="append('2')">2</button>
+      <button onclick="append('3')">3</button>
+      <button rowspan="2" onclick="calculate()" class="equal">=</button>
+
+      <button onclick="append('0')">0</button>
+      <button onclick="append('.')">.</button>
+    </div>
+  </div>
+
+  <script>
+    const display = document.getElementById('display');
+
+    function append(value) {
+      display.value += value;
+    }
+
+    function clearDisplay() {
+      display.value = '';
+    }
+
+    function back() {
+      display.value = display.value.slice(0, -1);
+    }
+
+    function calculate() {
+      try {
+        display.value = eval(display.value);
+      } catch {
+        display.value = 'خطأ';
+      }
+    }
+  </script>
 </body>
 </html>
